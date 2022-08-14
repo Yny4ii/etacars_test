@@ -1,0 +1,25 @@
+.header{
+  background-color: #B4CFB0;
+}
+
+.header__container{
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+
+.top-currency{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.top-currency__item{
+  padding: 1rem;
+  background-color: #94B49F;
+  border-radius: 100px;
+}
