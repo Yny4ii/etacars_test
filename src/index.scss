@@ -11,6 +11,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
 ul, ol, li {
   list-style: none;
 }
@@ -20,4 +21,5 @@ ul, ol, li {
 @import 'components/header/header';
 @import 'components/currencyTable/currensyTable';
 @import 'components/modal/modal';
+@import 'components/loader/loader';
 
