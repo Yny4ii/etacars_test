@@ -1,8 +1,8 @@
-.header{
-  background-color: #B4CFB0;
+.header {
+  background-color: $color-light-green;
 }
 
-.header__container{
+.header__container {
   padding: 0 2rem;
   display: flex;
   flex-direction: row;
@@ -12,14 +12,14 @@
 }
 
 
-.top-currency{
+.top-currency {
   display: flex;
   flex-direction: row;
   gap: 1rem;
 }
 
-.top-currency__item{
+.top-currency__item {
   padding: 1rem;
-  background-color: #94B49F;
+  background-color: $color-dark-green;
   border-radius: 100px;
 }

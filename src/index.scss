@@ -4,7 +4,7 @@ body {
   box-sizing: border-box;
   width: 100vw;
   height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
   sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -14,7 +14,10 @@ body {
 ul, ol, li {
   list-style: none;
 }
-
+@import './styles/typography';
+@import './styles/colors';
+@import './styles/add-button';
 @import 'components/header/header';
 @import 'components/currencyTable/currensyTable';
 @import 'components/modal/modal';
+
