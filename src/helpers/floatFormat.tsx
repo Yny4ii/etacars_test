@@ -1,4 +1,4 @@
-export const floatFormat = (value) => {
+export const floatFormat = (value : string) :string => {
     const number = parseFloat(value);
     if (number > 1000000000) {
         return `${(number / 1000000000).toFixed(2)}B`

@@ -1,12 +1,12 @@
 import './App.css';
-import {useDispatch} from "react-redux";
 import {useEffect} from "react";
 import {getCurrencies} from "./redux/slices/currencySlices";
 import {CurrencyTable} from "./components/currencyTable/currencyTable";
 import {Header} from "./components/header/header";
+import {useAppDispatch} from "./hooks/hooks";
 
-function App() {
-    const dispatch = useDispatch();
+export const App = (): JSX.Element => {
+    const dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(getCurrencies())
     }, [dispatch])
@@ -18,4 +18,3 @@ function App() {
     );
 }
 
-export default App;

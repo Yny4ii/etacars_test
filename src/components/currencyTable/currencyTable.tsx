@@ -1,9 +1,12 @@
-import React from 'react';
-import {useSelector} from "react-redux";
+import React, {useState} from 'react';
 import {CurrencyItem} from "../currencyItem/currencyItem";
+import Modal from "../modal/modal";
+import {useAppSelector} from "../../hooks/hooks";
 
 export const CurrencyTable = () => {
-    const {currencies, status} = useSelector(state => state.currencyReducer)
+    const [modalActive, setModalActive] = useState(true);
+
+    const {currencies, status} = useAppSelector(state => state.currencyReducer)
     console.log(currencies)
     return (
         <>
@@ -27,12 +30,13 @@ export const CurrencyTable = () => {
                         <tbody>
                         {
                             currencies.map(e => (
-                                <CurrencyItem className='table__item' key={e.id} {...e}/>
+                                <CurrencyItem  setActive={setModalActive} key={e.id} {...e}/>
                             ))
                         }
                         </tbody>
                     </table>
                 </div> : null}
+            {modalActive && <Modal setActive={setModalActive} active={modalActive}/>}
         </>
     );
 };

@@ -1,10 +1,17 @@
 import axios from "axios";
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {createAsyncThunk} from "@reduxjs/toolkit";
+import {Currency} from "../../interfaces/Currency";
 
 const api = 'https://api.coincap.io/v2/assets';
 
-const initialState = {
+interface InitialState {
+    status: string;
+    currencies: Currency[];
+
+}
+
+const initialState: InitialState = {
     currencies: [],
     status: 'loading'
 }
@@ -18,19 +25,20 @@ export const getCurrencies = createAsyncThunk('/currency/getCurrencies', async (
 const currencySlice = createSlice({
     name: 'currency', initialState,
     reducers: {},
-    extraReducers: {
-        [getCurrencies.fulfilled]: (state, action) => {
+    extraReducers: (builder) => {
+        builder.addCase(getCurrencies.fulfilled, (state, action: PayloadAction<Currency[]>) => {
             state.status = 'success';
             state.currencies = action.payload;
-        },
-        [getCurrencies.rejected]: (state) => {
+        });
+        builder.addCase(getCurrencies.rejected, (state) => {
             state.status = 'error';
             state.currencies = [];
-        },
-        [getCurrencies.pending]: (state) => {
+
+        });
+        builder.addCase(getCurrencies.pending, (state) => {
             state.status = 'loading';
             state.currencies = [];
-        }
+        });
     }
 })
 

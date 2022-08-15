@@ -1,9 +1,9 @@
 import React from 'react';
-import {useSelector} from "react-redux";
 import {floatFormat} from "../../helpers/floatFormat";
+import {useAppSelector} from "../../hooks/hooks";
 
 export const Header = () => {
-    const currencies = useSelector(state => state.currencyReducer.currencies).slice(0, 3);
+    const currencies = useAppSelector(state => state.currencyReducer.currencies).slice(0, 3);
     return (
         <header className='header'>
             <div className='header__container'>
