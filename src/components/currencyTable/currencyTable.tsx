@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {CurrencyItem} from "../currencyItem/currencyItem";
 import Modal from "../modal/modal";
 import {useAppSelector} from "../../hooks/hooks";
+import {Loader} from "../loader/loader";
 
 export const CurrencyTable = () => {
     const [modalActive, setModalActive] = useState<boolean>(false);
@@ -10,7 +11,7 @@ export const CurrencyTable = () => {
     console.log(currencies)
     return (
         <>
-            {status === 'loading' && <h1>Loading</h1>}
+            {status === 'loading' && <Loader/>}
             {status === 'error' && <h1>Error!</h1>}
             {status === 'success' && currencies.length ?
                 <div className='container'>
