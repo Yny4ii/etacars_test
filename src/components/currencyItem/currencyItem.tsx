@@ -34,7 +34,7 @@ export const CurrencyItem = ({
             <td className='table__item'>{floatFormat(supply)}</td>
             <td className='table__item'>${floatFormat(volumeUsd24Hr)}</td>
             <td className='table__item'>{floatFormat(changePercent24Hr)}%</td>
-            <button onClick={() => setActive(true)}>+</button>
+            <div className='add-button' onClick={() => setActive(true)}>+</div>
         </tr>)
 };
 

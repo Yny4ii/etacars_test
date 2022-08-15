@@ -4,7 +4,7 @@ import Modal from "../modal/modal";
 import {useAppSelector} from "../../hooks/hooks";
 
 export const CurrencyTable = () => {
-    const [modalActive, setModalActive] = useState(true);
+    const [modalActive, setModalActive] = useState<boolean>(false);
 
     const {currencies, status} = useAppSelector(state => state.currencyReducer)
     console.log(currencies)
@@ -30,13 +30,13 @@ export const CurrencyTable = () => {
                         <tbody>
                         {
                             currencies.map(e => (
-                                <CurrencyItem  setActive={setModalActive} key={e.id} {...e}/>
+                                <CurrencyItem setActive={setModalActive} key={e.id} {...e}/>
                             ))
                         }
                         </tbody>
                     </table>
                 </div> : null}
-            {modalActive && <Modal setActive={setModalActive} active={modalActive}/>}
+            {modalActive && <Modal setActive={setModalActive}/>}
         </>
     );
 };
