@@ -1,5 +1,9 @@
 .header {
   background-color: $color-light-green;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 }
 
 .header__container {
@@ -7,15 +11,19 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  max-width: 1140px;
   margin: 0 auto;
 }
 
 
 .top-currency {
+  margin-left: 10rem;
   display: flex;
   flex-direction: row;
   gap: 1rem;
+}
+
+.header__wallet{
+  margin-right: 10rem;
 }
 
 .top-currency__item {
