@@ -3,18 +3,28 @@ import {CurrencyItem} from "../currencyItem/currencyItem";
 import Modal from "../modal/modal";
 import {useAppSelector} from "../../hooks/hooks";
 import {Loader} from "../loader/loader";
+import {Pagination} from "../pagination/Pagination";
 
 export const CurrencyTable = () => {
-    const [modalActive, setModalActive] = useState<boolean>(false);
-
     const {currencies, status} = useAppSelector(state => state.currencyReducer)
-    console.log(currencies)
+
+    const [modalActive, setModalActive] = useState<boolean>(false);
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [currenciesPerPage] = useState<number>(10);
+    const lastCurrenciesIndex = currentPage * currenciesPerPage;
+    const firstCurrenciesIndex = lastCurrenciesIndex - currenciesPerPage;
+    const currentCurrency = currencies.slice(firstCurrenciesIndex, lastCurrenciesIndex);
+
+    const paginate = (pageNumber: number) => {
+        setCurrentPage(pageNumber)
+    }
     return (
         <>
             {status === 'loading' && <Loader/>}
             {status === 'error' && <h1>Error!</h1>}
             {status === 'success' && currencies.length ?
-                <div className='container'>
+
+                <div className='container column'>
                     <table className='table'>
                         <thead>
                         <tr className='table__row'>
@@ -30,12 +40,13 @@ export const CurrencyTable = () => {
                         </thead>
                         <tbody>
                         {
-                            currencies.map(e => (
-                                <CurrencyItem setActive={setModalActive} key={e.id} {...e}/>
+                            currentCurrency.map(e => (
+                                <CurrencyItem setActive={setModalActive} key={e.id}  {...e}/>
                             ))
                         }
                         </tbody>
                     </table>
+                    <Pagination paginate={paginate} currenciesPerPage={currenciesPerPage} totalCurrency={currencies.length}/>
                 </div> : null}
             {modalActive && <Modal setActive={setModalActive}/>}
         </>

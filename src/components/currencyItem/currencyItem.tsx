@@ -1,7 +1,9 @@
 import React from 'react';
 import {floatFormat} from "../../helpers/floatFormat";
+import {useNavigate} from "react-router-dom";
 
 interface CurrencyItemProps {
+    id: string,
     name: string;
     rank: string;
     priceUsd: string;
@@ -14,6 +16,7 @@ interface CurrencyItemProps {
 }
 
 export const CurrencyItem = ({
+                                 id,
                                  name,
                                  rank,
                                  priceUsd,
@@ -24,8 +27,13 @@ export const CurrencyItem = ({
                                  changePercent24Hr,
                                  setActive
                              }: CurrencyItemProps) => {
+    const navigate = useNavigate();
+    const onNavigateToCurrencyDetails = (id: string) => {
+        navigate(`/currency/${id}`)
+    }
+
     return (
-        <tr className="table__row">
+        <tr className='table__row' onClick={() => onNavigateToCurrencyDetails(id)}>
             <td className='table__item'>{rank}</td>
             <td className='table__item'>{name}</td>
             <td className='table__item'>${floatFormat(priceUsd)}</td>
@@ -34,7 +42,10 @@ export const CurrencyItem = ({
             <td className='table__item'>{floatFormat(supply)}</td>
             <td className='table__item'>${floatFormat(volumeUsd24Hr)}</td>
             <td className='table__item'>{floatFormat(changePercent24Hr)}%</td>
-            <div className='add-button' onClick={() => setActive(true)}>+</div>
-        </tr>)
+            <td className='table__item' >
+                <div className='add-button' onClick={() => setActive(true)} >+</div>
+            </td>
+        </tr>
+    )
 };
 
