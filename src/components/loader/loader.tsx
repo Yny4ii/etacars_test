@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
 export const Loader = () => {
-    return (
-        <div className='box'>
-            <span className='loader'></span>
-        </div>
-    );
+  return (
+    <div className="box">
+      <span className="loader"></span>
+    </div>
+  );
 };
 

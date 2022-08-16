@@ -11,7 +11,6 @@
 }
 
 
-
 .modal__content {
   padding: 2rem;
   border-radius: 1.2rem;
@@ -21,24 +20,24 @@
   text-align: center;
 }
 
-.modal__input-field{
+.modal__input-field {
   display: flex;
   justify-content: space-between;
   margin-bottom: 2.5rem;
 }
 
-.modal__input{
+.modal__input {
   padding: 0.5rem 2rem;
   border: 2px solid $color-dark-green;
   border-radius: 1.5rem;
 
-  &:focus{
+  &:focus {
     outline: $color-dark-green;
   }
 }
 
 
-.modal__warning-message{
+.modal__warning-message {
   color: $color-red;
   font-size: 1rem;
 }

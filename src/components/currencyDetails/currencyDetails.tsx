@@ -1,59 +1,79 @@
-import React, {useEffect, useState} from 'react';
-import {useNavigate, useParams} from "react-router-dom";
-import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
-import {getCurrencyHistory} from "../../redux/slices/currencySlices";
-import {LineChart} from "../lineChart/lineChart";
-import {Loader} from "../loader/loader";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
+import { getCurrencyHistory } from "../../redux/slices/currencySlices";
+import { LineChart } from "../lineChart/lineChart";
+import { Loader } from "../loader/loader";
 import Modal from "../modal/modal";
-import {floatFormat} from "../../helpers/floatFormat";
+import { floatFormat } from "../../helpers/floatFormat";
+import { Currency } from "../../interfaces/Currency";
 
 export const CurrencyDetails = () => {
-    const navigate = useNavigate();
-    const [modalActive, setModalActive] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const [modalActive, setModalActive] = useState<boolean>(false);
+  const [selectedCurrency, setSelectedCurrency] = useState<Currency | null>(
+    null
+  );
 
-    const {status, currencies, history} = useAppSelector(state => state.currencyReducer)
-    const dispatch = useAppDispatch();
-    const {id} = useParams();
-    const currency = currencies.find(e => e.id === id);
-    useEffect(() => {
-        if (currency !== null) {
-            dispatch(getCurrencyHistory(id));
-
-        }
-    }, [id, dispatch])
-
-    const onNavigateToCurrencyTable = () => {
-        navigate(`/`);
+  const { status, currencies, history } = useAppSelector(
+    (state) => state.currencyReducer
+  );
+  const dispatch = useAppDispatch();
+  const { id } = useParams();
+  const currency = currencies.find((e) => e.id === id);
+  useEffect(() => {
+    if (currency !== null) {
+      dispatch(getCurrencyHistory(id));
     }
+  }, [id, dispatch]);
 
-    return (
-        <>
-            {status === 'loading' && <Loader/>}
-            {status === 'error' && <h1>Error!</h1>}
-            {status === 'success' && history.length ? (
-                <div className='currency-details column'>
-                    <div className='row'>
-                        <div className='add-button' onClick={() => setModalActive(true)}>+</div>
-                        <div onClick={onNavigateToCurrencyTable}>{`<-`}</div>
-                    </div>
+  const onNavigateToCurrencyTable = () => {
+    navigate(`/`);
+  };
 
-                    <LineChart history={history}/>
-                    <div className="currency-details__info">
-                        <div className='currency-details__info-element'>Name: {currency?.name}</div>
-                        <div className='currency-details__info-element'>Symbol: {currency?.symbol}</div>
-                        <div
-                            className='currency-details__info-element'>Price: {currency?.priceUsd ? floatFormat(currency.priceUsd) : 'None'}</div>
-                        <div
-                            className='currency-details__info-element'>Changed: {currency?.changePercent24Hr ? `${floatFormat(currency.changePercent24Hr)}%` : 'None'}</div>
-                    </div>
+  const onClickPlusButton = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setModalActive(true);
+    setSelectedCurrency(selectedCurrency);
+    console.log(currency);
+  };
 
-                </div>) : null}
+  return (
+    <>
+      {status === "loading" && <Loader />}
+      {status === "error" && <h1>Error!</h1>}
+      {status === "success" && history.length ? (
+        <div className="currency-details column">
+          <div className="row">
+            <div className="add-button" onClick={onClickPlusButton}>
+              +
+            </div>
+            <div onClick={onNavigateToCurrencyTable}>{`<-`}</div>
+          </div>
 
-            {modalActive && <Modal setActive={setModalActive}/>}
+          <LineChart history={history} />
+          <div className="currency-details__info">
+            <div className="currency-details__info-element">
+              Name: {currency?.name}
+            </div>
+            <div className="currency-details__info-element">
+              Symbol: {currency?.symbol}
+            </div>
+            <div className="currency-details__info-element">
+              Price:{" "}
+              {currency?.priceUsd ? floatFormat(currency.priceUsd) : "None"}
+            </div>
+            <div className="currency-details__info-element">
+              Changed:{" "}
+              {currency?.changePercent24Hr
+                ? `${floatFormat(currency.changePercent24Hr)}%`
+                : "None"}
+            </div>
+          </div>
+        </div>
+      ) : null}
 
-
-        </>
-
-    );
+      {modalActive && <Modal setActive={setModalActive} />}
+    </>
+  );
 };
-

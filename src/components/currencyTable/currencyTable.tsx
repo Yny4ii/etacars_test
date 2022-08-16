@@ -4,6 +4,7 @@ import Modal from "../modal/modal";
 import {useAppSelector} from "../../hooks/hooks";
 import {Loader} from "../loader/loader";
 import {Pagination} from "../pagination/Pagination";
+import {Currency} from "../../interfaces/Currency";
 
 export const CurrencyTable = () => {
     const {currencies, status} = useAppSelector(state => state.currencyReducer)
@@ -11,6 +12,7 @@ export const CurrencyTable = () => {
     const [modalActive, setModalActive] = useState<boolean>(false);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [currenciesPerPage] = useState<number>(10);
+    const [selectedCurrency, setSelectedCurrency] = useState<Currency | null>(null);
     const lastCurrenciesIndex = currentPage * currenciesPerPage;
     const firstCurrenciesIndex = lastCurrenciesIndex - currenciesPerPage;
     const currentCurrency = currencies.slice(firstCurrenciesIndex, lastCurrenciesIndex);
@@ -41,14 +43,16 @@ export const CurrencyTable = () => {
                         <tbody>
                         {
                             currentCurrency.map(e => (
-                                <CurrencyItem setActive={setModalActive} key={e.id}  {...e}/>
+                                <CurrencyItem setSelectedCurrency={setSelectedCurrency} setActive={setModalActive}
+                                              key={e.id}  {...e}/>
                             ))
                         }
                         </tbody>
                     </table>
-                    <Pagination paginate={paginate} currenciesPerPage={currenciesPerPage} totalCurrency={currencies.length}/>
+                    <Pagination paginate={paginate} currenciesPerPage={currenciesPerPage}
+                                totalCurrency={currencies.length}/>
                 </div> : null}
-            {modalActive && <Modal setActive={setModalActive}/>}
+            {modalActive && <Modal selectedCurrency={selectedCurrency} setActive={setModalActive}/>}
         </>
     );
 };

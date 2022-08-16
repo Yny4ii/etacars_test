@@ -1,35 +1,61 @@
 import React from 'react';
 import {floatFormat} from "../../helpers/floatFormat";
 import {useNavigate} from "react-router-dom";
+import {Currency} from "../../interfaces/Currency";
 
 interface CurrencyItemProps {
-    id: string,
-    name: string;
+    id: string;
     rank: string;
-    priceUsd: string;
-    marketCapUsd: string;
-    vwap24Hr: string;
+    symbol: string;
+    name: string;
     supply: string;
+    maxSupply: string;
+    marketCapUsd: string;
     volumeUsd24Hr: string;
+    priceUsd: string;
     changePercent24Hr: string;
+    vwap24Hr: string;
     setActive: (option: boolean) => void;
+    setSelectedCurrency: (option: Currency) => void;
 }
+
 
 export const CurrencyItem = ({
                                  id,
-                                 name,
                                  rank,
-                                 priceUsd,
-                                 marketCapUsd,
-                                 vwap24Hr,
+                                 symbol,
+                                 name,
                                  supply,
+                                 maxSupply,
+                                 marketCapUsd,
                                  volumeUsd24Hr,
+                                 priceUsd,
                                  changePercent24Hr,
-                                 setActive
+                                 vwap24Hr,
+                                 setActive,
+                                 setSelectedCurrency
                              }: CurrencyItemProps) => {
     const navigate = useNavigate();
     const onNavigateToCurrencyDetails = (id: string) => {
         navigate(`/currency/${id}`)
+    }
+    const onClickPlusButton = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        setActive(true)
+        const currency = {
+            id,
+            rank,
+            symbol,
+            name,
+            supply,
+            maxSupply,
+            marketCapUsd,
+            volumeUsd24Hr,
+            priceUsd,
+            changePercent24Hr,
+            vwap24Hr
+        }
+        setSelectedCurrency(currency);
     }
 
     return (
@@ -42,8 +68,8 @@ export const CurrencyItem = ({
             <td className='table__item'>{floatFormat(supply)}</td>
             <td className='table__item'>${floatFormat(volumeUsd24Hr)}</td>
             <td className='table__item'>{floatFormat(changePercent24Hr)}%</td>
-            <td className='table__item' >
-                <div className='add-button' onClick={() => setActive(true)} >+</div>
+            <td className='table__item'>
+                <div className='add-button' onClick={onClickPlusButton}>+</div>
             </td>
         </tr>
     )
