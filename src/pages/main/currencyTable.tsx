@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import {CurrencyItem} from "../currencyItem/currencyItem";
-import Modal from "../modal/modal";
+import {CurrencyItem} from "../../components/currencyItem/currencyItem";
+import Modal from "../../components/modal/modal";
 import {useAppSelector} from "../../hooks/hooks";
-import {Loader} from "../loader/loader";
-import {Pagination} from "../pagination/Pagination";
+import {Loader} from "../../components/loader/loader";
+import {Pagination} from "../../components/pagination/Pagination";
 import {Currency} from "../../interfaces/Currency";
 
 export const CurrencyTable = () => {

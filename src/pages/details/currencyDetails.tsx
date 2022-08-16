@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { getCurrencyHistory } from "../../redux/slices/currencySlices";
-import { LineChart } from "../lineChart/lineChart";
-import { Loader } from "../loader/loader";
-import Modal from "../modal/modal";
+import { LineChart } from "../../components/lineChart/lineChart";
+import { Loader } from "../../components/loader/loader";
+import Modal from "../../components/modal/modal";
 import { floatFormat } from "../../helpers/floatFormat";
 import { Currency } from "../../interfaces/Currency";
 

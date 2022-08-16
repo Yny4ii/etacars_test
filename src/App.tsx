@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { getCurrencies } from "./redux/slices/currencySlices";
-import { CurrencyTable } from "./components/currencyTable/currencyTable";
+import { CurrencyTable } from "./pages/main/currencyTable";
 import { Header } from "./components/header/header";
 import { useAppDispatch } from "./hooks/hooks";
 import { Route, Routes } from "react-router-dom";
 import { LineChart } from "./components/lineChart/lineChart";
-import { CurrencyDetails } from "./components/currencyDetails/currencyDetails";
+import { CurrencyDetails } from "./pages/details/currencyDetails";
 
 export const App = (): JSX.Element => {
   const dispatch = useAppDispatch();

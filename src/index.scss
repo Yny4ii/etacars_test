@@ -38,9 +38,9 @@ ul, ol, li {
 @import './styles/row';
 @import './styles/column';
 @import 'components/header/header';
-@import 'components/currencyTable/currensyTable';
+@import 'pages/main/currensyTable';
 @import 'components/modal/modal';
 @import 'components/loader/loader';
 @import 'components/pagination/pagination';
-@import 'components/currencyDetails/currency-details.css';
+@import 'pages/details/currency-details.css';
 
