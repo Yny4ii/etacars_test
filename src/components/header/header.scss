@@ -23,11 +23,21 @@
 }
 
 .header__wallet {
+  display: flex;
+  align-items: center;
   margin-right: 10rem;
+  cursor: pointer;
 }
 
 .top-currency__item {
   padding: 1rem;
   background-color: $color-dark-green;
   border-radius: 100px;
+}
+
+.header__wallet-info{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
 }
