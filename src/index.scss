@@ -37,9 +37,11 @@ ul, ol, li {
 @import './styles/add-button';
 @import 'styles/row';
 @import 'styles/column';
+@import 'styles/delete-button';
 @import 'components/header/header';
 @import 'pages/main/currensyTable';
 @import 'components/modal/modal';
+@import 'components/walletModal/walletModal';
 @import 'components/loader/loader';
 @import 'components/pagination/pagination';
 @import 'pages/details/currency-details';
