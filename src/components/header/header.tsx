@@ -17,7 +17,9 @@ export const Header = () => {
   const currentPrice = calcCurrentWallet(walletCurrency, currencies);
   const initialPrice = calcInitialWallet(walletCurrency);
   const walletDifference = currentPrice - initialPrice;
-  const walletDifferencePercent = initialPrice ? (walletDifference /initialPrice) * 100 : 0
+  const walletDifferencePercent = initialPrice
+    ? (walletDifference / initialPrice) * 100
+    : 0;
 
   return (
     <header className="header">

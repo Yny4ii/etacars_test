@@ -52,4 +52,3 @@ export const LineChart = ({ history }: LineChartProps) => {
 
   return <Line data={data} style={{ maxHeight: "300px" }} />;
 };
-

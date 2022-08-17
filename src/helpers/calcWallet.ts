@@ -7,16 +7,13 @@ export const calcInitialWallet = (wallet: Wallet[]) => {
 };
 
 export const calcCurrentWallet = (wallet: Wallet[], currencies: Currency[]) => {
-  const a= wallet.reduce((ac, el) => {
+  const currentWallet = wallet.reduce((ac, el) => {
     const currency = currencies.find((e) => e.id === el.id);
     const currencyPrice = currency
       ? parseFloat(currency.priceUsd) * el.count
       : 0;
 
-    console.log(currencies)
-
     return ac + currencyPrice;
   }, 0);
-  console.log(a)
-  return a;
+  return currentWallet;
 };

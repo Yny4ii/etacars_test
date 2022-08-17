@@ -23,7 +23,6 @@ const walletSlice = createSlice({
           (price * count + action.payload.price * action.payload.count) / 2;
         currency.price = newPrice;
         currency.count = action.payload.count + count;
-
       } else {
         state.currencies = [...state.currencies, action.payload];
       }

@@ -35,7 +35,6 @@ export const CurrencyDetails = () => {
     e.stopPropagation();
     setModalActive(true);
     setSelectedCurrency(selectedCurrency);
-    console.log(currency);
   };
 
   return (
@@ -73,7 +72,9 @@ export const CurrencyDetails = () => {
         </div>
       ) : null}
 
-      {modalActive && <Modal setActive={setModalActive} />}
+      {modalActive && (
+        <Modal selectedCurrency={null} setActive={setModalActive} />
+      )}
     </>
   );
 };
