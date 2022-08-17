@@ -18,7 +18,7 @@ const Modal = ({ setActive, selectedCurrency }: ModalProps) => {
   };
 
   const onAddButton = () => {
-    if (reg.test(input) && selectedCurrency) {
+    if (reg.test(input) && selectedCurrency && input!=='0') {
       setActive(false);
       dispatch(
         addCurrencyToWallet({

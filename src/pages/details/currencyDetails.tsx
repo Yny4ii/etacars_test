@@ -33,8 +33,9 @@ export const CurrencyDetails = () => {
 
   const onClickPlusButton = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setModalActive(true);
     setSelectedCurrency(selectedCurrency);
+
+    setModalActive(true);
   };
 
   return (
@@ -72,8 +73,8 @@ export const CurrencyDetails = () => {
         </div>
       ) : null}
 
-      {modalActive && (
-        <Modal selectedCurrency={null} setActive={setModalActive} />
+      {modalActive && currency && (
+        <Modal selectedCurrency={currency} setActive={setModalActive} />
       )}
     </>
   );
