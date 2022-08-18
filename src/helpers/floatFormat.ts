@@ -13,5 +13,8 @@ export const floatFormat = (value: string | number): string => {
   if (number > 1000) {
     return `${(number / 1000).toFixed(2)}K`;
   }
+  if (number < 0.01) {
+    return `${number.toFixed(3)}`;
+  }
   return number.toFixed(2);
 };
