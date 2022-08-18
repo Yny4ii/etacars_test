@@ -33,8 +33,11 @@ export const Header = () => {
       <div className="header__wallet" onClick={() => setModalActive(true)}>
         <div className="header__wallet-info">
           <div>${floatFormat(currentPrice)}</div>
+          <div>
+            {walletDifference > 0 ? "+" : ""}
+            {floatFormat(walletDifference)}$
+          </div>
           <div>{floatFormat(walletDifferencePercent)}%</div>
-          <div>{floatFormat(walletDifference)}</div>
         </div>
       </div>
       {modalActive && (
