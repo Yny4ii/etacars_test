@@ -48,7 +48,10 @@ export const CurrencyDetails = () => {
             <div className="add-button" onClick={onClickPlusButton}>
               +
             </div>
-            <div onClick={onNavigateToCurrencyTable}>{`<-`}</div>
+            <div
+              className="back-button"
+              onClick={onNavigateToCurrencyTable}
+            >{`<-`}</div>
           </div>
 
           <LineChart history={history} />
